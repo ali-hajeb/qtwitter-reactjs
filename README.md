@@ -19,6 +19,10 @@ REACT_APP_API_URL = 'http://localhost:4000'
 ```
 3. Run `yarn start`.
 
+## Todo
+
+- [ ] Add a modal to side drawer and tweet editor on mobile devices
+
 ## Available Scripts
 
 In the project directory, you can run:
