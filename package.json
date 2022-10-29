@@ -2,6 +2,14 @@
   "name": "qtwitter-reactjs",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ali-hajeb/qtwitter-reactjs"
+  },
+  "author": {
+    "name": "Ali Hajeb",
+    "email": "ali.hajeb.ah@gmail.com"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.6.3",
