@@ -1,10 +1,10 @@
 # QTwitter
 
-This project is a simple and minimal clone of Twitter created using React.js. It was done as a challenge from @QueraTeam React Bootcamp.
+This project is a simple and minimal clone of Twitter created using React.js. It was done as a challenge from [@QueraTeam](https://github.com/QueraTeam) React Bootcamp.
 
 ## Backend
 
-[The original backend](https://github.com/mhyrzt/rest-twitter-nodejs) of QTwitter was made by @mhyrzt using Express.js. This QTwitter client uses a forked version of the said backend. The backend server relies on Express.js framework and MongoDB as its database.
+[The original backend](https://github.com/mhyrzt/rest-twitter-nodejs) of QTwitter was made by [@mhyrzt](https://github.com/mhyrzt) using Express.js. This QTwitter client uses a forked version of the said backend. The backend server relies on Express.js framework and MongoDB as its database.
 for more instructions on how to set up the server, visit the [backend repository](https://github.com/ali-hajeb/rest-twitter-nodejs).
 
 ## Set up
