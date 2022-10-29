@@ -1,0 +1,29 @@
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: all 250ms ease-in-out;
+  z-index: 99;
+}
+
+.modal.flex {
+  display: flex;
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+@media (min-width: 992px) {
+  .modal.side-drawer--modal {
+    display: none !important;
+  }
+}

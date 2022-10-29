@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createStyles } from '@mantine/core';
+import UserProtectedRouteProvider from './features/UserAuthentication';
+import routes from './routes';
+import Panel from './containers/MainPanel';
+import NotFoundPage from './pages/404';
 
-function App() {
+const useStyles = createStyles((theme) => ({
+  app: {
+    width: '100%',
+    height: '100%',
+  },
+}));
+
+const App: React.FC = () => {
+  const { classes } = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className={classes.app}>
+      <UserProtectedRouteProvider
+        fallbackComponent={<strong>Loading...</strong>}
+        protectedRoutes={routes.protectedRoutes}
+        authenticationRoutes={routes.authenticationRoutes}
+        userPanelComponent={<Panel />}
+        notFoundPage={<NotFoundPage />}
+      />
+    </main>
   );
-}
+};
 
 export default App;
