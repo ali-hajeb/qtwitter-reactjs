@@ -99,7 +99,7 @@ const UserPage: React.FunctionComponent<UserPageProps> = () => {
   );
   const [error, setError] = useState(0);
 
-  const toggleReload = () => setReload(r => !r);
+  const toggleReload = () => setReload((r) => !r);
   const setTweets = (tweets: ITweet[]) => {
     const updated = { ...user } as IQTwitterUser;
     updated.tweets = [...tweets];
@@ -137,7 +137,7 @@ const UserPage: React.FunctionComponent<UserPageProps> = () => {
           setUser(res.data);
         })
         .catch((err) => {
-          setError(err.response?.status)
+          setError(err.response?.status);
           console.log(err);
         });
     }
@@ -150,12 +150,10 @@ const UserPage: React.FunctionComponent<UserPageProps> = () => {
 
   return (
     <PagePanel title={username || ''} stickyHeader headerWithBackButton>
-      <section className="h-100">
+      <section className={'h-100'}>
         <header
           className={classes.header}
-          style={{ backgroundColor: profileColor }}
-        >
-        </header>
+          style={{ backgroundColor: profileColor }}></header>
         <section className={classes.profile}>
           <div className={classes.profile_img}>
             {user ? (
@@ -170,20 +168,20 @@ const UserPage: React.FunctionComponent<UserPageProps> = () => {
           </div>
           <div className={classes.profile_desc}>
             <div className={classes.profile_desc_top}>
-              <div className="flex-grow-1">
+              <div className={'flex-grow-1'}>
                 {user ? (
                   <Text size={'lg'} weight={'bolder'}>
                     {user.name}
                   </Text>
                 ) : (
-                  <Skeleton height={8} width="30%" radius="xl" />
+                  <Skeleton height={8} width='30%' radius='xl' />
                 )}
                 {user ? (
-                  <Text size={'sm'} color="dimmed">
+                  <Text size={'sm'} color='dimmed'>
                     @{user.username}
                   </Text>
                 ) : (
-                  <Skeleton height={8} mt={6} width="30%" radius="xl" />
+                  <Skeleton height={8} mt={6} width='30%' radius='xl' />
                 )}
               </div>
               <div>
@@ -191,19 +189,20 @@ const UserPage: React.FunctionComponent<UserPageProps> = () => {
                   <Button
                     variant={canBeFollowed ? 'filled' : 'outline'}
                     loading={isRequestPending}
-                    onClick={followUserHandler}
-                  >
-                    {canBeFollowed ? (
-                      <div className={classes.user_follow}>
-                        {!isRequestPending && <IconUserPlus />}
-                        <div>Follow</div>
-                      </div>
-                    ) : (
-                      <div className={classes.user_follow}>
-                        {!isRequestPending && <IconCheck />}
-                        <div>Unfollow</div>
-                      </div>
-                    )}
+                    onClick={followUserHandler}>
+                    <div className={classes.user_follow}>
+                      {canBeFollowed ? (
+                        <>
+                          {!isRequestPending && <IconUserPlus />}
+                          <div>Follow</div>
+                        </>
+                      ) : (
+                        <>
+                          {!isRequestPending && <IconCheck />}
+                          <div>Followed</div>
+                        </>
+                      )}
+                    </div>
                   </Button>
                 )}
               </div>
@@ -215,9 +214,9 @@ const UserPage: React.FunctionComponent<UserPageProps> = () => {
               </Text>
             ) : (
               <>
-                <Skeleton height={8} mt={10} radius="xl" />
-                <Skeleton height={8} mt={6} radius="xl" />
-                <Skeleton height={8} mt={6} width="70%" radius="xl" />
+                <Skeleton height={8} mt={10} radius={'xl'} />
+                <Skeleton height={8} mt={6} radius={'xl'} />
+                <Skeleton height={8} mt={6} radius={'xl'} width={'70%'} />
               </>
             )}
             {user ? (
@@ -232,13 +231,23 @@ const UserPage: React.FunctionComponent<UserPageProps> = () => {
                 </div>
               </div>
             ) : (
-              <Skeleton height={8} mt={10} width="30%" radius="xl" />
+              <Skeleton height={8} mt={10} width={'30%'} radius={'xl'} />
             )}
           </div>
         </section>
         <Divider mb={'sm'} className={classes.divider} />
         <section className={classes.user_tweetlist}>
-          {error ? error === 404 ? <NotFound /> : <ErrorBox retry={toggleReload} message='Oops! Something went wrong' withSadFace />: user ? (
+          {error ? (
+            error === 404 ? (
+              <NotFound />
+            ) : (
+              <ErrorBox
+                retry={toggleReload}
+                message='Oops! Something went wrong'
+                withSadFace
+              />
+            )
+          ) : user ? (
             <TweetList
               authHeader={authHeader}
               setTweets={setTweets}
