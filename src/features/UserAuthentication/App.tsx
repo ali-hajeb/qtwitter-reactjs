@@ -3,7 +3,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
 import RequiredAuth from './containers/RequiredAuth';
 import UserPanel from './containers/UserPanel';
-import UserProtectedRouteContainer from './containers/UserProtectedRouteProvider';
+import UserProtectedRoutesContainer from './containers/UserProtectedRoutesContainer';
 import userAuthAction from './store/userAuthAction';
 
 export interface AppProps {
@@ -61,7 +61,7 @@ const UserProtectedRoutesProvider: React.FunctionComponent<AppProps> = ({
   );
 
   return (
-    <UserProtectedRouteContainer
+    <UserProtectedRoutesContainer
       fallbackComponent={fallbackComponent}
       routes={finalRoutes}
     />
