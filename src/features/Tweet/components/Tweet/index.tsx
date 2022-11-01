@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { IconHeart, IconMessage, IconShare, IconTrash } from '@tabler/icons';
 import { Button, Text } from '@mantine/core';
 import { useClipboard } from '@mantine/hooks';
@@ -6,7 +7,6 @@ import TweetProfilePicture from './TweetProfilePicture';
 import { useTweetStyles } from './styles';
 import { ITweet } from '../../types/tweet';
 import { hashtagREGEX } from '../../constants';
-import { Link, useNavigate } from 'react-router-dom';
 
 export interface TweetProps extends ITweet {
   profileColor: string;
@@ -19,10 +19,14 @@ export interface TweetProps extends ITweet {
 
 const Tweet: React.FunctionComponent<TweetProps> = (props) => {
   const navigate = useNavigate();
-  const clipboard = useClipboard({timeout: 500});
+  const clipboard = useClipboard({ timeout: 500 });
   const { classes } = useTweetStyles();
-  const tweetClasses = [classes.tweet];
-  if (props.sm) tweetClasses.push(classes.sm);
+  
+  const tweetClasses = useMemo(() => {
+    if (props.sm) return [classes.tweet, classes.sm];
+    return [classes.tweet];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.sm])
 
   const likeTweetHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

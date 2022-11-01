@@ -6,7 +6,7 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons";
-import React from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
@@ -60,8 +60,11 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 }) => {
   const navigate = useNavigate();
   const { classes } = useStyles();
-  const headerClasses = [classes["app-header"]];
-  if (sticky) headerClasses.push(classes.sticky);
+  const headerClasses = useMemo(() => {
+    if (sticky) return [classes["app-header"], classes.sticky];
+    return [classes["app-header"]]
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sticky])
   return (
     <div className={headerClasses.join(" ")}>
       <div>
